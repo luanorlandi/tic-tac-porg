@@ -12,7 +12,8 @@ export default class Game extends React.Component {
         }
       ],
       stepNumber: 0,
-      xIsNext: true
+      xIsNext: true,
+      isUndoingMove: false,
     };
   }
 
@@ -32,14 +33,16 @@ export default class Game extends React.Component {
         }
       ]),
       stepNumber: history.length,
-      xIsNext: !this.state.xIsNext
+      xIsNext: !this.state.xIsNext,
+      isUndoingMove: false,
     });
   }
 
   jumpTo(step) {
     this.setState({
       stepNumber: step,
-      xIsNext: (step % 2) === 0
+      xIsNext: (step % 2) === 0,
+      isUndoingMove: true,
     });
   }
 
@@ -56,11 +59,24 @@ export default class Game extends React.Component {
         `Go to move #${move} (${row}, ${column})` :
         'Go to game start';
       
-      return (
-        <li key={move}>
-          <button onClick={() => this.jumpTo(move)}>{desc}</button>
-        </li>
-      );
+      if (this.state.isUndoingMove && this.state.stepNumber === move) {
+        return (
+          <li key={move}>
+            <button className='move-selected' onClick={() => this.jumpTo(move)}>
+              {desc}
+            </button>
+          </li>
+        );
+      } else {
+        return (
+          <li key={move}>
+            <button onClick={() => this.jumpTo(move)}>
+              {desc}
+            </button>
+          </li>
+        );
+      }
+      
     });
 
     let status;

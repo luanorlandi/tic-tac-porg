@@ -7,6 +7,10 @@ ol, ul {
   padding-left: 30px;
 }
 
+.move-selected {
+  font-weight: 700;
+}
+
 .board-row:after {
   clear: both;
   content: "";
