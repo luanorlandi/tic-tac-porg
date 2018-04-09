@@ -15,6 +15,11 @@ export default class Game extends Component {
       xIsNext: true,
       isUndoingMove: false,
     };
+
+    this.size = {
+      width: 3,
+      height: 3,
+    }
   }
 
   handleClick(i) {
@@ -90,6 +95,7 @@ export default class Game extends Component {
       <div className="game">
         <div className="game-board">
           <Board
+            size={this.size}
             squares={current.squares}
             onClick={i => this.handleClick(i)}
           />
