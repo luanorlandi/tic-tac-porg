@@ -1,9 +1,23 @@
-import React from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
-export default function Square(props) {
-  return (
-    <button className="square" onClick={props.onClick}>
-      {props.value}
-    </button>
-  );
+export default class Square extends Component {
+  static propTypes = {
+    isHighligthed: PropTypes.bool,
+  }
+
+  static defaultProps = {
+    isHighligthed: false,
+  }
+
+  render() {
+    const classHighlight = this.props.isHighligthed ? 'highlight' : '';
+    return (
+      <button
+        className={`square ${classHighlight}`}
+        onClick={this.props.onClick}>
+        {this.props.value}
+      </button>
+    );
+  }
 }
