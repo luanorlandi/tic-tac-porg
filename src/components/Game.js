@@ -14,6 +14,7 @@ export default class Game extends Component {
       stepNumber: 0,
       xIsNext: true,
       isUndoingMove: false,
+      isDescendingOrder: false,
     };
 
     this.size = {
@@ -29,7 +30,7 @@ export default class Game extends Component {
     if (calculateWinner(squares) || squares[i]) {
       return;
     }
-    squares[i] = this.state.xIsNext ? "X" : "O";
+    squares[i] = this.state.xIsNext ? 'X' : 'O';
     this.setState({
       history: history.concat([
         {
@@ -43,6 +44,11 @@ export default class Game extends Component {
     });
   }
 
+  handleCheckbox = (event) =>
+    this.setState({
+      isDescendingOrder: event.target.checked
+    });
+
   jumpTo(step) {
     this.setState({
       stepNumber: step,
@@ -51,10 +57,25 @@ export default class Game extends Component {
     });
   }
 
-  render() {
+  renderStatus = () => {
     const history = this.state.history;
     const current = history[this.state.stepNumber];
     const winner = calculateWinner(current.squares);
+
+    let status;
+    if (winner) {
+      status = 'Winner: ' + winner;
+    } else {
+      status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
+    }
+
+    return (
+      <div>{ status }</div>
+    );
+  }
+
+  renderMoves = () => {
+    const history = this.state.history;
 
     const moves = history.map((step, move) => {
       // calculate move position as (row, column)
@@ -63,46 +84,54 @@ export default class Game extends Component {
       const desc = move ?
         `Go to move #${move} (${row}, ${column})` :
         'Go to game start';
+
+      const moveSelectedClass =
+        this.state.isUndoingMove && this.state.stepNumber === move ?
+        'move-selected' : '';
       
-      if (this.state.isUndoingMove && this.state.stepNumber === move) {
-        return (
-          <li key={move}>
-            <button className='move-selected' onClick={() => this.jumpTo(move)}>
-              {desc}
-            </button>
-          </li>
-        );
-      } else {
-        return (
-          <li key={move}>
-            <button onClick={() => this.jumpTo(move)}>
-              {desc}
-            </button>
-          </li>
-        );
-      }
-      
+      return (
+        <li key={move}>
+          <button
+            className={ moveSelectedClass }
+            onClick={() => this.jumpTo(move)}>
+            {desc}
+          </button>
+        </li>
+      );
     });
 
-    let status;
-    if (winner) {
-      status = "Winner: " + winner;
-    } else {
-      status = "Next player: " + (this.state.xIsNext ? "X" : "O");
+    if (this.state.isDescendingOrder) {
+      const reversedMoves = moves.slice(0).reverse();
+
+      return <ol>{ reversedMoves }</ol>;
     }
 
+    return <ol>{ moves }</ol>;
+  }
+
+  render() {
+    const history = this.state.history;
+    const current = history[this.state.stepNumber];
+    
     return (
-      <div className="game">
-        <div className="game-board">
+      <div className='game'>
+        <div className='game-board'>
           <Board
             size={this.size}
             squares={current.squares}
             onClick={i => this.handleClick(i)}
           />
         </div>
-        <div className="game-info">
-          <div>{status}</div>
-          <ol>{moves}</ol>
+        <div className='game-info'>
+          { this.renderStatus() }
+          <label>
+            <input
+              type='checkbox'
+              onChange={ this.handleCheckbox }
+            />
+            Sort descending
+          </label>
+          { this.renderMoves() }
         </div>
       </div>
     );
