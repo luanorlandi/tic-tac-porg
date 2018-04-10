@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Square from './Square';
 
+import { boardSize } from '../game/TicTacToe';
+
 export default class Board extends Component {
   static propTypes = {
     highlight: PropTypes.array,
@@ -40,8 +42,8 @@ export default class Board extends Component {
   }
 
   render() {
-    const width = this.props.size.width;
-    const height = this.props.size.height;
+    const width = boardSize.width;
+    const height = boardSize.height;
     const rows = [];
 
     for (let i = 0; i < height; i++) {

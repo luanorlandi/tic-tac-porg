@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
 import Board from './Board';
 
+import TicTacToe from '../game/TicTacToe'
+
 export default class Game extends Component {
   constructor(props) {
     super(props);
+
+    const size = TicTacToe.boardSize.width * TicTacToe.boardSize.height;
     this.state = {
       history: [
         {
-          squares: Array(9).fill(null),
+          squares: Array(size).fill(null),
           cell: null,
         }
       ],
@@ -16,18 +20,13 @@ export default class Game extends Component {
       isUndoingMove: false,
       isDescendingOrder: false,
     };
-
-    this.size = {
-      width: 3,
-      height: 3,
-    }
   }
 
   handleClick(i) {
     const history = this.state.history.slice(0, this.state.stepNumber + 1);
     const current = history[history.length - 1];
     const squares = current.squares.slice();
-    if (this.calculateWinner(squares) || squares[i]) {
+    if (TicTacToe.calculateWinnerSquares(squares) || squares[i]) {
       return;
     }
     squares[i] = this.state.xIsNext ? 'X' : 'O';
@@ -55,38 +54,6 @@ export default class Game extends Component {
       xIsNext: (step % 2) === 0,
       isUndoingMove: true,
     });
-
-  calculateWinner = () => {
-    const history = this.state.history;
-    const current = history[this.state.stepNumber];
-    const squares = current.squares;
-
-    const lines = [
-      [0, 1, 2],
-      [3, 4, 5],
-      [6, 7, 8],
-      [0, 3, 6],
-      [1, 4, 7],
-      [2, 5, 8],
-      [0, 4, 8],
-      [2, 4, 6]
-    ];
-
-    for (let i = 0; i < lines.length; i++) {
-      const [a, b, c] = lines[i];
-      if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-        return lines[i];
-      }
-    }
-  }
-
-  isBoardFull() {
-    const history = this.state.history;
-    const current = history[this.state.stepNumber];
-    const squares = current.squares;
-
-    return !squares.includes(null);
-  }
 
   renderMoves = () => {
     const history = this.state.history;
@@ -126,23 +93,15 @@ export default class Game extends Component {
   render() {
     const history = this.state.history;
     const current = history[this.state.stepNumber];
-    const winner = this.calculateWinner();
+    const winner = TicTacToe.calculateWinnerSquares(current.squares);
 
-    let status;
-
-    if (winner) {
-      status = 'Winner: ' + current.squares[winner[0]];
-    } else if (this.isBoardFull()) {
-      status = 'Draw';
-    } else {
-      status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
-    }
+    let status = TicTacToe.statusLabel(
+      current.squares, winner, this.state.xIsNext);
 
     return (
       <div className='game'>
         <div className='game-board'>
           <Board
-            size={this.size}
             squares={current.squares}
             highlight={ winner }
             onClick={i => this.handleClick(i)}
