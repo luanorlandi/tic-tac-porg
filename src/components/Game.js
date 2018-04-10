@@ -80,6 +80,14 @@ export default class Game extends Component {
     }
   }
 
+  isBoardFull() {
+    const history = this.state.history;
+    const current = history[this.state.stepNumber];
+    const squares = current.squares;
+
+    return !squares.includes(null);
+  }
+
   renderMoves = () => {
     const history = this.state.history;
 
@@ -120,10 +128,16 @@ export default class Game extends Component {
     const current = history[this.state.stepNumber];
     const winner = this.calculateWinner();
 
-    const status = winner ?
-      'Winner: ' + current.squares[winner[0]] :
-      'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
-    
+    let status;
+
+    if (winner) {
+      status = 'Winner: ' + current.squares[winner[0]];
+    } else if (this.isBoardFull()) {
+      status = 'Draw';
+    } else {
+      status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
+    }
+
     return (
       <div className='game'>
         <div className='game-board'>
