@@ -51,7 +51,7 @@ export default class Board extends Component {
     }
 
     return (
-      <div>
+      <div className='game-board'>
         { rows }
       </div>
     );

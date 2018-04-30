@@ -100,15 +100,13 @@ export default class Game extends Component {
 
     return (
       <div className='game'>
-        <div className='game-board'>
-          <Board
-            squares={current.squares}
-            highlight={ winner }
-            onClick={i => this.handleClick(i)}
-          />
-        </div>
+        <div className='status'>{ status }</div>
+        <Board
+          squares={current.squares}
+          highlight={ winner }
+          onClick={i => this.handleClick(i)}
+        />
         <div className='game-info'>
-          <div>{ status }</div>
           <label>
             <input
               type='checkbox'
