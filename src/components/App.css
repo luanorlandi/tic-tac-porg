@@ -1,0 +1,32 @@
+body {
+  font: 15px "Century Gothic", Futura, sans-serif;
+  margin: 0;
+}
+
+header {
+  height: 10vh;
+  display: flex;
+  justify-content: center;
+  background-color: #7d7d7d;
+}
+
+h1 {
+  font-size: 4vh;
+}
+
+main {
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #b7b7b7;
+}
+
+footer {
+  min-height: 10vh;
+  display: flex;
+  justify-content: center;
+  align-self: stretch;
+  flex-grow: 1;
+  background-color: #7d7d7d;
+}

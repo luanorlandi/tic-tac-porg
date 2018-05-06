@@ -4,6 +4,8 @@ import Square from './Square';
 
 import { boardSize } from '../game/TicTacToe';
 
+import './Board.css';
+
 export default class Board extends Component {
   static propTypes = {
     highlight: PropTypes.array,

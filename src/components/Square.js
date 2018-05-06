@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import './Square.css';
+
 export default class Square extends Component {
   static propTypes = {
     isHighligthed: PropTypes.bool,

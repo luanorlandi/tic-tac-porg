@@ -3,6 +3,8 @@ import Board from './Board';
 
 import TicTacToe from '../game/TicTacToe'
 
+import './Game.css';
+
 export default class Game extends Component {
   constructor(props) {
     super(props);
@@ -100,13 +102,15 @@ export default class Game extends Component {
 
     return (
       <article>
-        <div className='status'>{ status }</div>
-        <Board
-          squares={current.squares}
-          highlight={ winner }
-          onClick={i => this.handleClick(i)}
-        />
-        <div className='game-info'>
+        <section className='game'>
+          <div className='status'>{ status }</div>
+          <Board
+            squares={current.squares}
+            highlight={ winner }
+            onClick={i => this.handleClick(i)}
+          />
+        </section>
+        <section className='moves'>
           <label>
             <input
               type='checkbox'
@@ -115,7 +119,7 @@ export default class Game extends Component {
             Sort descending
           </label>
           { this.renderMoves() }
-        </div>
+        </section>
       </article>
     );
   }
