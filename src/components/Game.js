@@ -99,7 +99,7 @@ export default class Game extends Component {
       current.squares, winner, this.state.xIsNext);
 
     return (
-      <div className='game'>
+      <article>
         <div className='status'>{ status }</div>
         <Board
           squares={current.squares}
@@ -116,7 +116,7 @@ export default class Game extends Component {
           </label>
           { this.renderMoves() }
         </div>
-      </div>
+      </article>
     );
   }
 }

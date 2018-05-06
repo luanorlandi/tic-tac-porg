@@ -3,29 +3,23 @@ body {
   margin: 0;
 }
 
-.app {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  background-color: grey;
-  height: 100vh;
-}
-
 header {
+  height: 10vh;
   display: flex;
   justify-content: center;
-  flex-grow: 1;
+  background-color: rgb(100, 100, 100);
 }
 
-header h1 {
-  font-size: 50px;
+h1 {
+  font-size: 5vh;
 }
 
-.game {
+main {
+  height: 80vh;
   display: flex;
   flex-direction: column;
   flex-grow: 2;
+  background-color: rgb(150, 150, 150);
 }
 
 .status {
@@ -50,14 +44,13 @@ header h1 {
   background: #fff;
   border: 0;
   float: left;
-  font-size: 24px;
+  font-size: 12px;
   font-weight: bold;
-  line-height: 34px;
   padding: 0;
   text-align: center;
-  width: 10vw;
-  height: 10vw;
-  margin: 5vw;
+  width: 4vw;
+  height: 4vw;
+  margin: 2vw;
 }
 
 .square:focus {
@@ -83,9 +76,10 @@ header h1 {
 }
 
 footer {
+  min-height: 10vh;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   align-self: stretch;
   flex-grow: 1;
-  background-color: white;
+  background-color: rgb(100, 100, 100);
 }
