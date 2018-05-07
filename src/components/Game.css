@@ -5,28 +5,42 @@ article {
 }
 
 section.game {
-  background-color: aqua;
-  height: 36vh;
-  width: 80vw;
+  max-height: 80vh;
+  min-height: 40vh;
   max-width: 100vw;
-  margin: 2vw 2vh;
+  min-width: 60vw;
+  width: 50vh;
+  background-color: aqua;
 }
 
 .status {
   display: flex;
   justify-content: center;
-  font-size: 3vw;
+  font-size: 3vh;
 }
 
 section.moves {
-  background-color: blue;
-  height: 36vh;
-  width: 80vw;
+  max-height: 80vh;
+  min-height: 40vh;
   max-width: 100vw;
-  margin: 2vw;
+  min-width: 40vw;
+  width: 50vh;
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: blue;
+}
+
+label {
+  font-size: 3vh;
+}
+
+li {
+  font-size: 2vh;
+}
+
+button {
+  font-size: 2vh;
 }
 
 .move-selected {
