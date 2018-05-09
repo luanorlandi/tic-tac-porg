@@ -1,13 +1,27 @@
+@font-face {
+  font-family: StarWars;
+  src: url('../font/starjedi.ttf');
+}
+
 body {
   font: 15px "Century Gothic", Futura, sans-serif;
   margin: 0;
+  background-color: #000000;
+  background-image: url('../assets/background.png');
+  background-position: center;
+  color: #fbe000;
 }
 
 header {
   height: 10vh;
   display: flex;
   justify-content: center;
-  background-color: #7d7d7d;
+  font-family: StarWars;
+  text-shadow: 0.2vh 0.2vh 0 #fbe000,
+    0.2vh -0.2vh 0 #fbe000,
+    -0.2vh 0.2vh 0 #fbe000,
+    -0.2vh -0.2vh 0 #fbe000;
+  color: #000000;
 }
 
 h1 {
@@ -19,7 +33,6 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #b7b7b7;
 }
 
 footer {
@@ -28,5 +41,4 @@ footer {
   justify-content: center;
   align-self: stretch;
   flex-grow: 1;
-  background-color: #7d7d7d;
 }
