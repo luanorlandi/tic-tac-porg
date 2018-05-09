@@ -18,7 +18,7 @@ export default class Square extends Component {
       <button
         className={`square ${classHighlight}`}
         onClick={this.props.onClick}>
-        {this.props.value}
+        { this.props.value }
       </button>
     );
   }

@@ -1,3 +1,5 @@
+import label from '../json/label';
+
 export const boardSize = { width: 3, height: 3, };
 
 export const calculateWinnerSquares = (squares) => {
@@ -22,14 +24,16 @@ export const calculateWinnerSquares = (squares) => {
 
 export const isBoardFull = squares => !squares.includes(null);
 
-export const statusLabel = (squares, winner, xIsNext) => {
+export const statusLabel = (squares, winner, isPlayerOneNext) => {
   if (winner) {
-    return 'Winner: ' + squares[winner[0]];
+    return `${label.statusWinner}: ${squares[winner[0]]}`;
   } else if (isBoardFull(squares)) {
     return 'Draw';
   }
 
-  return 'Next player: ' + (xIsNext ? 'X' : 'O');
+  const next = isPlayerOneNext ? label.playerOne : label.playerTwo;
+
+  return `${label.statusNext}: ${next}`;
 }
 
 export default {boardSize, calculateWinnerSquares, isBoardFull, statusLabel};

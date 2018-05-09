@@ -1,0 +1,11 @@
+{
+  "appName": "Tic-Tac-Porg",
+  "statusWinner": "Winner",
+  "statusNext": "Next",
+  "statusDraw": "Draw",
+  "sort": "Sort descending",
+  "start": "Start",
+  "move": "Move",
+  "playerOne": "X",
+  "playerTwo": "O"
+}

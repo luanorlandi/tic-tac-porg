@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
+
 import Board from './Board';
-
-import TicTacToe from '../game/TicTacToe'
-
+import TicTacToe from '../game/TicTacToe';
 import './Game.css';
+import label from '../json/label';
 
 export default class Game extends Component {
   constructor(props) {
@@ -18,7 +18,7 @@ export default class Game extends Component {
         }
       ],
       stepNumber: 0,
-      xIsNext: true,
+      isPlayerOneNext: true,
       isUndoingMove: false,
       isDescendingOrder: false,
     };
@@ -31,7 +31,7 @@ export default class Game extends Component {
     if (TicTacToe.calculateWinnerSquares(squares) || squares[i]) {
       return;
     }
-    squares[i] = this.state.xIsNext ? 'X' : 'O';
+    squares[i] = this.state.isPlayerOneNext ? label.playerOne : label.playerTwo;
     this.setState({
       history: history.concat([
         {
@@ -40,7 +40,7 @@ export default class Game extends Component {
         }
       ]),
       stepNumber: history.length,
-      xIsNext: !this.state.xIsNext,
+      isPlayerOneNext: !this.state.isPlayerOneNext,
       isUndoingMove: false,
     });
   }
@@ -53,7 +53,7 @@ export default class Game extends Component {
   jumpTo = (step) =>
     this.setState({
       stepNumber: step,
-      xIsNext: (step % 2) === 0,
+      isPlayerOneNext: (step % 2) === 0,
       isUndoingMove: true,
     });
 
@@ -65,8 +65,8 @@ export default class Game extends Component {
       const row = 1 + Math.floor(step.cell / 3);
       const column = 1 + step.cell % 3;
       const desc = move ?
-        `Go to move #${move} (${row}, ${column})` :
-        'Go to game start';
+        `${label.move} (${row}, ${column})` :
+        `${label.start}`;
 
       const moveSelectedClass =
         this.state.isUndoingMove && this.state.stepNumber === move ?
@@ -98,7 +98,7 @@ export default class Game extends Component {
     const winner = TicTacToe.calculateWinnerSquares(current.squares);
 
     let status = TicTacToe.statusLabel(
-      current.squares, winner, this.state.xIsNext);
+      current.squares, winner, this.state.isPlayerOneNext);
 
     return (
       <article>
@@ -116,7 +116,7 @@ export default class Game extends Component {
               type='checkbox'
               onChange={ this.handleCheckbox }
             />
-            Sort descending
+            { label.sort }
           </label>
           { this.renderMoves() }
         </section>
