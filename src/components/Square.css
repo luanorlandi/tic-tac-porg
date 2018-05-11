@@ -1,13 +1,13 @@
 .square {
   max-height: 20vw;
   max-width: 20vw;
-  width: 10vh;
-  height: 10vh;
+  width: 8vh;
+  height: 8vh;
   margin: 1vh;
-  background: #fff;
+  background: #ffffff00;
   border: 0;
   float: left;
-  font-size: 5vh;
+  font-size: 4vh;
   font-weight: bold;
   padding: 0;
   text-align: center;
@@ -19,4 +19,18 @@
 
 .square.highlight {
   color: red;
+}
+
+.porg,
+.chewbacca {
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.porg {
+  background-image: url('../assets/porg.png');
+}
+
+.chewbacca {
+  background-image: url('../assets/chewbacca.png');
 }

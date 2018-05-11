@@ -1,10 +1,10 @@
 @font-face {
-  font-family: StarWars;
+  font-family: 'StarWars';
   src: url('../font/starjedi.ttf');
 }
 
 body {
-  font: 15px "Century Gothic", Futura, sans-serif;
+  font-family: 'Lato', sans-serif;
   margin: 0;
   background-color: #000000;
   background-image: url('../assets/background.png');
@@ -16,7 +16,7 @@ header {
   height: 10vh;
   display: flex;
   justify-content: center;
-  font-family: StarWars;
+  font-family: 'StarWars';
   text-shadow: 0.2vh 0.2vh 0 #fbe000,
     0.2vh -0.2vh 0 #fbe000,
     -0.2vh 0.2vh 0 #fbe000,

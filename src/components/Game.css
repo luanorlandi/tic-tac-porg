@@ -16,6 +16,7 @@ section.game {
   display: flex;
   justify-content: center;
   font-size: 3vh;
+  margin-bottom: 2vh;
 }
 
 section.moves {
@@ -30,15 +31,21 @@ section.moves {
 }
 
 label {
+  font-size: 3.5vh;
+}
+
+.moves-list {
+  display: flex;
+  flex-direction: column;
+  align-content: space-around;
+  flex-wrap: wrap;
+  max-height: 20vh;
+  width: 100%;
+  margin: 2vh;
+}
+
+.moves-list div {
   font-size: 3vh;
-}
-
-li {
-  font-size: 2vh;
-}
-
-button {
-  font-size: 2vh;
 }
 
 .move-selected {

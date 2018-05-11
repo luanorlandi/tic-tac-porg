@@ -10,3 +10,32 @@
   justify-content: space-between;
   width: inherit;
 }
+
+.lines {
+  position: absolute;
+  z-index: -1;
+}
+
+.horizontal-line {
+  position: relative;
+  margin-top: 9.6vh;
+  max-width: 90vw;
+  width: 30vh;
+  height: 0.5vh;
+  background-color: #ffffff;
+  border-radius: 1vh;
+  box-shadow: 0px 0px 3vh 1vh #0000d2;
+}
+
+.vertical-line {
+  display: inline-block;
+  position: relative;
+  margin-left: 4.7vh;
+  margin-right: 4.7vh;
+  max-height: 90vw;
+  width: 0.5vh;
+  height: 30vh;
+  background-color: #ffffff;
+  border-radius: 1vh;
+  box-shadow: 0px 0px 3vh 1vh #e00000;
+}

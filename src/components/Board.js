@@ -54,6 +54,14 @@ export default class Board extends Component {
     return (
       <div className='game-board'>
         { rows }
+        <div className='lines'>
+          <div className='horizontal-line'></div>
+          <div className='horizontal-line'></div>
+        </div>
+        <div className='lines'>
+          <div className='vertical-line'></div>
+          <div className='vertical-line'></div>
+        </div>
       </div>
     );
   }

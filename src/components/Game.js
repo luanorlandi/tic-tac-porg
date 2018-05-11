@@ -65,31 +65,29 @@ export default class Game extends Component {
       const row = 1 + Math.floor(step.cell / 3);
       const column = 1 + step.cell % 3;
       const desc = move ?
-        `${label.move} (${row}, ${column})` :
-        `${label.start}`;
+        `${1+move}. ${label.move} (${row}, ${column})` :
+        `1. ${label.start}`;
 
       const moveSelectedClass =
         this.state.isUndoingMove && this.state.stepNumber === move ?
         'move-selected' : '';
       
       return (
-        <li key={move}>
-          <button
-            className={ moveSelectedClass }
-            onClick={() => this.jumpTo(move)}>
-            {desc}
-          </button>
-        </li>
+        <div key={move}
+          className={ moveSelectedClass }
+          onClick={() => this.jumpTo(move)}>
+          {desc}
+        </div>
       );
     });
 
     if (this.state.isDescendingOrder) {
       const reversedMoves = moves.slice(0).reverse();
 
-      return <ol>{ reversedMoves }</ol>;
+      return <div className='moves-list'>{ reversedMoves }</div>;
     }
 
-    return <ol>{ moves }</ol>;
+    return <div className='moves-list'>{ moves }</div>;
   }
 
   render() {
