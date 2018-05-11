@@ -32,6 +32,74 @@ section.moves {
 
 label {
   font-size: 3.5vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  transition: color 250ms cubic-bezier(.4,.0,.23,1);
+}
+
+label:hover {
+  color: #fff384;
+  cursor: pointer;
+}
+
+label span {
+  box-sizing: border-box;
+  user-select: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 2vh;
+  width: 2.5vh;
+  height: 2.5vh;
+  background: transparent;
+  border: 0.2vh solid #fbe000;
+  border-radius: 0.2vh;
+  cursor: pointer;
+  transition: all 200ms;
+}
+
+input[type='checkbox'] {
+  height: 0;
+  width: 0;
+}
+
+input[type='checkbox']:checked + span {
+  background-color: #fbe000;
+}
+
+input[type='checkbox']:checked + span:before {
+  content: "";
+  position: relative;
+  top: 1vh;
+  right: 0.5vh;
+  border-right: 0.3vh solid transparent;
+  border-bottom: 0.3vh solid transparent;
+  transform: rotate(45deg);
+  transform-origin: 0% 100%;
+  animation: checkbox-check 50ms 50ms forwards;
+}
+
+@keyframes checkbox-check{
+  0% {
+    width: 0;
+    height: 0;
+    border-color: #000000;
+    transform: translate3d(0,0,0) rotate(45deg);
+  }
+
+  33% {
+    width: 0.5vh;
+    height: 0;
+    transform: translate3d(0,0,0) rotate(45deg);
+  }
+
+  100% {
+    width: 0.5vh;
+    height: 1.6vh;
+    border-color: #000000;
+    transform: translate3d(0,-1.7vh,0) rotate(45deg);
+  }
 }
 
 .moves-list {
@@ -40,12 +108,17 @@ label {
   align-content: space-around;
   flex-wrap: wrap;
   max-height: 20vh;
-  width: 100%;
+  width: 90%;
   margin: 2vh;
 }
 
 .moves-list div {
   font-size: 3vh;
+}
+
+.moves-list div:hover {
+  color: #fff384;
+  cursor: pointer;
 }
 
 .move-selected {

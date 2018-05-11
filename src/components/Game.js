@@ -114,6 +114,7 @@ export default class Game extends Component {
               type='checkbox'
               onChange={ this.handleCheckbox }
             />
+            <span></span>
             { label.sort }
           </label>
           { this.renderMoves() }
