@@ -7,21 +7,22 @@ import './Board.css';
 
 export default class Board extends Component {
   static propTypes = {
-    highlight: PropTypes.array,
+    winner: PropTypes.array,
   }
 
   static defaultProps = {
-    highlight: [],
+    winner: [],
   }
 
   renderSquare = (square) => {
-    const isHighligthed = this.props.highlight.includes(square);
+    const isDarkened = this.props.winner.length > 0 &&
+      !this.props.winner.includes(square);
 
     return (
       <Square
         key={ square }
         value={ this.props.squares[square] }
-        isHighligthed={ isHighligthed }
+        isDarkened={ isDarkened }
         onClick={() => this.props.onClick(square)}
       />
     );

@@ -8,21 +8,20 @@ import label from '../json/label';
 
 export default class Square extends Component {
   static propTypes = {
-    isHighligthed: PropTypes.bool,
+    isDarkened: PropTypes.bool,
   }
 
   static defaultProps = {
-    isHighligthed: false,
+    isDarkened: false,
   }
 
   render() {
-    const classHighlight = this.props.isHighligthed ? 'highlight' : '';
-    let background = '';
+    const classHighlight = this.props.isDarkened ? 'darkened' : '';
 
     if (!this.props.value) {
       return (
         <div
-          className='square'
+          className='square empty'
           onClick={this.props.onClick}>
         </div>
       );

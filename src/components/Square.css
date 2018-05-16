@@ -8,10 +8,11 @@
   text-align: center;
 }
 
-div.square {
+empty {
   cursor: pointer;
 }
 
-.square.highlight {
-  color: red;
+.darkened {
+  -webkit-filter: brightness(0.5);
+  filter: brightness(0.5);
 }

@@ -127,7 +127,7 @@ export default class Game extends Component {
           { this.renderStatus(text, player) }
           <Board
             squares={current.squares}
-            highlight={ winner }
+            winner={ winner }
             onClick={i => this.handleClick(i)}
           />
         </section>
