@@ -4,34 +4,14 @@
   width: 8vh;
   height: 8vh;
   margin: 1vh;
-  background: #ffffff00;
-  border: 0;
-  float: left;
   font-size: 4vh;
-  font-weight: bold;
-  padding: 0;
   text-align: center;
-  cursor: pointer;
 }
 
-.square:focus {
-  outline: none;
+div.square {
+  cursor: pointer;
 }
 
 .square.highlight {
   color: red;
-}
-
-.porg,
-.chewbacca {
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-.porg {
-  background-image: url('../assets/porg.png');
-}
-
-.chewbacca {
-  background-image: url('../assets/chewbacca.png');
 }
