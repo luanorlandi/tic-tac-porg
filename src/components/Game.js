@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import Board from './Board';
 import TicTacToe from '../game/TicTacToe';
 import './Game.css';
+import porg from '../assets/porg.png';
+import chewbacca from '../assets/chewbacca.png';
 import label from '../json/label';
 
 export default class Game extends Component {
@@ -90,18 +92,39 @@ export default class Game extends Component {
     return <div className='moves-list'>{ moves }</div>;
   }
 
+  renderStatus(text, player) {
+    let image = '';
+    if (player) {
+      if (player === label.playerOne) {
+        image = <img src={ porg } alt={ player }/>;
+      } else {
+        image = <img src={ chewbacca } alt={ player }/>;
+      }
+    }
+
+    return (
+      <div className='status'>
+        <span>{ text }</span>
+        { image }
+      </div>
+    );
+  }
+
   render() {
     const history = this.state.history;
     const current = history[this.state.stepNumber];
     const winner = TicTacToe.calculateWinnerSquares(current.squares);
 
-    let status = TicTacToe.statusLabel(
+    const text = TicTacToe.textStatus(
+      current.squares, winner, this.state.isPlayerOneNext);
+
+    const player = TicTacToe.playerStatus(
       current.squares, winner, this.state.isPlayerOneNext);
 
     return (
       <article>
         <section className='game'>
-          <div className='status'>{ status }</div>
+          { this.renderStatus(text, player) }
           <Board
             squares={current.squares}
             highlight={ winner }

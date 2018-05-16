@@ -19,6 +19,12 @@ section.game {
   margin-bottom: 2vh;
 }
 
+.status img {
+  height: 4vh;
+  width: 4vh;
+  margin-left: 1vh;
+}
+
 section.moves {
   max-height: 80vh;
   min-height: 40vh;
