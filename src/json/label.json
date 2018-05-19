@@ -1,5 +1,6 @@
 {
   "appName": "Tic-Tac-Porg",
+  "author": "Created by Luan Orlandi",
   "statusWinner": "Winner",
   "statusNext": "Next",
   "statusDraw": "Draw",
@@ -7,5 +8,7 @@
   "start": "Start",
   "move": "Move",
   "playerOne": "X",
-  "playerTwo": "O"
+  "playerTwo": "O",
+  "github": "Star",
+  "twitter": "Tweet"
 }

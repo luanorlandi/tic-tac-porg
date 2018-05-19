@@ -44,7 +44,7 @@ footer {
   flex-grow: 1;
 }
 
-footer .developed {
+footer .copyright {
   display: flex;
   justify-content: center;
 }

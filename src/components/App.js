@@ -17,7 +17,9 @@ export default class App extends Component {
         </main>
         <footer>
           <SocialMedia />
-          <span className='developed'>Developed by Luan Orlandi</span>
+          <span className='copyright'>
+            { label.author }
+          </span>
         </footer>
       </div>
     );
