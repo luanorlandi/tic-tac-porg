@@ -17,11 +17,12 @@ export default class Square extends Component {
 
   render() {
     const classHighlight = this.props.isDarkened ? 'darkened' : '';
+    const clickableClass = this.props.clickable ? 'empty' : '';
 
     if (!this.props.value) {
       return (
         <div
-          className='square empty'
+          className={`square ${clickableClass}`}
           onClick={this.props.onClick}>
         </div>
       );

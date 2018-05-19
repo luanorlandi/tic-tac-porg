@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import Board from './Board';
 import TicTacToe from '../game/TicTacToe';
+import { playMoveSound, playWinSound } from '../game/sound';
 import './Game.css';
 import porg from '../assets/porg.png';
 import chewbacca from '../assets/chewbacca.png';
@@ -23,27 +24,61 @@ export default class Game extends Component {
       isPlayerOneNext: true,
       isUndoingMove: false,
       isDescendingOrder: false,
+      winnerSquares: [],
+      statusText: TicTacToe.textStatusNext(),
+      statusPlayer: label.playerOne,
     };
   }
 
-  handleClick(i) {
+  updateStatus(squares, playerWinner, isPlayerOneNext) {
+    const statusText = TicTacToe.textStatus(
+      squares, playerWinner);
+
+    const statusPlayer = TicTacToe.playerStatus(
+      squares, playerWinner, isPlayerOneNext);
+
+    this.setState({
+      statusText,
+      statusPlayer,
+    });
+  }
+
+  handleClick(squarePosition) {
     const history = this.state.history.slice(0, this.state.stepNumber + 1);
-    const current = history[history.length - 1];
+    const current = history[this.state.stepNumber];
     const squares = current.squares.slice();
-    if (TicTacToe.calculateWinnerSquares(squares) || squares[i]) {
+
+    if (TicTacToe.isMoveInvalid(squares, squarePosition)) {
       return;
     }
-    squares[i] = this.state.isPlayerOneNext ? label.playerOne : label.playerTwo;
+
+    squares[squarePosition] = this.state.isPlayerOneNext ?
+      label.playerOne : label.playerTwo;
+
+    const winnerSquares = TicTacToe.calculateWinnerSquares(squares);
+    const newHistory = history.concat([
+      {
+        squares: squares,
+        cell: squarePosition,
+      }
+    ]);
+
+    if (winnerSquares) {
+      playWinSound(this.state.isPlayerOneNext);
+    } else {
+      playMoveSound(this.state.isPlayerOneNext);
+    }
+
+    const newIsPlayerOneNext = !this.state.isPlayerOneNext;
+    const playerWinner = winnerSquares ? squares[winnerSquares[0]] : null;
+    this.updateStatus(squares, playerWinner, newIsPlayerOneNext);
+
     this.setState({
-      history: history.concat([
-        {
-          squares: squares,
-          cell: i,
-        }
-      ]),
+      history: newHistory,
       stepNumber: history.length,
-      isPlayerOneNext: !this.state.isPlayerOneNext,
+      isPlayerOneNext: newIsPlayerOneNext,
       isUndoingMove: false,
+      winnerSquares,
     });
   }
 
@@ -52,12 +87,21 @@ export default class Game extends Component {
       isDescendingOrder: event.target.checked
     });
 
-  jumpTo = (step) =>
+  handleUndo = (step) => {
+    const current = this.state.history[step];
+    const squares = current.squares;
+    const winnerSquares = TicTacToe.calculateWinnerSquares(squares);
+    const newIsPlayerOneNext = (step % 2) === 0;
+    const playerWinner = winnerSquares ? squares[winnerSquares[0]] : null;
+    this.updateStatus(squares, playerWinner, newIsPlayerOneNext);
+
     this.setState({
       stepNumber: step,
-      isPlayerOneNext: (step % 2) === 0,
+      isPlayerOneNext: newIsPlayerOneNext,
       isUndoingMove: true,
+      winnerSquares,
     });
+  }
 
   renderMoves = () => {
     const history = this.state.history;
@@ -77,7 +121,7 @@ export default class Game extends Component {
       return (
         <div key={move}
           className={ moveSelectedClass }
-          onClick={() => this.jumpTo(move)}>
+          onClick={() => this.handleUndo(move)}>
           {desc}
         </div>
       );
@@ -113,21 +157,14 @@ export default class Game extends Component {
   render() {
     const history = this.state.history;
     const current = history[this.state.stepNumber];
-    const winner = TicTacToe.calculateWinnerSquares(current.squares);
-
-    const text = TicTacToe.textStatus(
-      current.squares, winner, this.state.isPlayerOneNext);
-
-    const player = TicTacToe.playerStatus(
-      current.squares, winner, this.state.isPlayerOneNext);
 
     return (
       <article>
         <section className='game'>
-          { this.renderStatus(text, player) }
+          { this.renderStatus(this.state.statusText, this.state.statusPlayer) }
           <Board
             squares={current.squares}
-            winner={ winner }
+            winnerSquares={ this.state.winnerSquares }
             onClick={i => this.handleClick(i)}
           />
         </section>

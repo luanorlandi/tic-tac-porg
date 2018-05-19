@@ -22,21 +22,27 @@ export const calculateWinnerSquares = (squares) => {
   }
 }
 
-export const isBoardFull = squares => !squares.includes(null);
+const isBoardFull = squares => !squares.includes(null);
 
-export const textStatus = (squares, winner) => {
-  if (winner) {
+export const isMoveInvalid = (squares, squarePosition) => {
+  return calculateWinnerSquares(squares) || squares[squarePosition];
+}
+
+export const textStatusNext = () => `${label.statusNext}: `;
+
+export const textStatus = (squares, playerWinner) => {
+  if (playerWinner) {
     return `${label.statusWinner}: `;
   } else if (isBoardFull(squares)) {
     return 'Draw';
   }
 
-  return `${label.statusNext}: `;
+  return textStatusNext();
 }
 
-export const playerStatus = (squares, winner, isPlayerOneNext) => {
-  if (winner) {
-    return `${squares[winner[0]]}`;
+export const playerStatus = (squares, playerWinner, isPlayerOneNext) => {
+  if (playerWinner) {
+    return `${playerWinner}`;
   } else if (isBoardFull(squares)) {
     return;
   }
@@ -47,7 +53,8 @@ export const playerStatus = (squares, winner, isPlayerOneNext) => {
 export default {
   boardSize,
   calculateWinnerSquares,
-  isBoardFull,
+  isMoveInvalid,
+  textStatusNext,
   textStatus,
   playerStatus
 };

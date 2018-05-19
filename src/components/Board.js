@@ -7,21 +7,24 @@ import './Board.css';
 
 export default class Board extends Component {
   static propTypes = {
-    winner: PropTypes.array,
+    winnerSquares: PropTypes.array,
   }
 
   static defaultProps = {
-    winner: [],
+    winnerSquares: [],
   }
 
   renderSquare = (square) => {
-    const isDarkened = this.props.winner.length > 0 &&
-      !this.props.winner.includes(square);
+    const isDarkened = this.props.winnerSquares.length > 0 &&
+      !this.props.winnerSquares.includes(square);
+
+    const clickable = this.props.winnerSquares.length === 0;
 
     return (
       <Square
         key={ square }
         value={ this.props.squares[square] }
+        clickable={ clickable }
         isDarkened={ isDarkened }
         onClick={() => this.props.onClick(square)}
       />
