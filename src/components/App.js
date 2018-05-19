@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import Game from './Game';
+import SocialMedia from './SocialMedia';
 import './App.css';
 import label from '../json/label';
 
@@ -15,7 +16,8 @@ export default class App extends Component {
           <Game />
         </main>
         <footer>
-          <h1>footer</h1>
+          <SocialMedia />
+          <span className='developed'>Developed by Luan Orlandi</span>
         </footer>
       </div>
     );

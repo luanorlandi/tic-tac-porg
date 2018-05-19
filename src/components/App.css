@@ -38,7 +38,13 @@ main {
 footer {
   min-height: 10vh;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: space-around;
   align-self: stretch;
   flex-grow: 1;
+}
+
+footer .developed {
+  display: flex;
+  justify-content: center;
 }
