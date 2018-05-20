@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import Board from './Board';
-import TicTacToe from '../game/TicTacToe';
+import ticTacToe from '../game/ticTacToe';
 import { playMoveSound, playWinSound } from '../game/sound';
 import './Game.css';
 import porg from '../assets/porg.png';
@@ -12,7 +12,7 @@ export default class Game extends Component {
   constructor(props) {
     super(props);
 
-    const size = TicTacToe.boardSize.width * TicTacToe.boardSize.height;
+    const size = ticTacToe.boardSize.width * ticTacToe.boardSize.height;
     this.state = {
       history: [
         {
@@ -25,16 +25,16 @@ export default class Game extends Component {
       isUndoingMove: false,
       isDescendingOrder: false,
       winnerSquares: [],
-      statusText: TicTacToe.textStatusNext(),
+      statusText: ticTacToe.textStatusNext(),
       statusPlayer: label.playerOne,
     };
   }
 
   updateStatus(squares, playerWinner, isPlayerOneNext) {
-    const statusText = TicTacToe.textStatus(
+    const statusText = ticTacToe.textStatus(
       squares, playerWinner);
 
-    const statusPlayer = TicTacToe.playerStatus(
+    const statusPlayer = ticTacToe.playerStatus(
       squares, playerWinner, isPlayerOneNext);
 
     this.setState({
@@ -48,14 +48,14 @@ export default class Game extends Component {
     const current = history[this.state.stepNumber];
     const squares = current.squares.slice();
 
-    if (TicTacToe.isMoveInvalid(squares, squarePosition)) {
+    if (ticTacToe.isMoveInvalid(squares, squarePosition)) {
       return;
     }
 
     squares[squarePosition] = this.state.isPlayerOneNext ?
       label.playerOne : label.playerTwo;
 
-    const winnerSquares = TicTacToe.calculateWinnerSquares(squares);
+    const winnerSquares = ticTacToe.calculateWinnerSquares(squares);
     const newHistory = history.concat([
       {
         squares: squares,
@@ -90,7 +90,7 @@ export default class Game extends Component {
   handleUndo = (step) => {
     const current = this.state.history[step];
     const squares = current.squares;
-    const winnerSquares = TicTacToe.calculateWinnerSquares(squares);
+    const winnerSquares = ticTacToe.calculateWinnerSquares(squares);
     const newIsPlayerOneNext = (step % 2) === 0;
     const playerWinner = winnerSquares ? squares[winnerSquares[0]] : null;
     this.updateStatus(squares, playerWinner, newIsPlayerOneNext);

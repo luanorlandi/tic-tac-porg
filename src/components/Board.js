@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import Square from './Square';
-import { boardSize } from '../game/TicTacToe';
+import { boardSize } from '../game/ticTacToe';
 import './Board.css';
 
 export default class Board extends Component {
