@@ -4,11 +4,12 @@
   "description" : "A tic-tac-toe with Star Wars theme",
   "icons": [
     {
-      "src": "./favicon-16x16-v1.ico",
-      "sizes": "16x16"
+      "src": "./favicon-16x16-v1.png",
+      "sizes": "16x16",
+      "type": "image/png"
     },
     {
-      "src": "./favicon-32x32-v1.ico",
+      "src": "./favicon-32x32-v1.png",
       "sizes": "32x32"
     },
     {
@@ -17,20 +18,24 @@
       "type": "image/x-icon"
     },
     {
-      "src": "./favicon-150x150-v1.ico",
-      "sizes": "150x150"
+      "src": "./favicon-150x150-v1.png",
+      "sizes": "150x150",
+      "type": "image/png"
     },
     {
-      "src": "./favicon-180x180-v1.ico",
-      "sizes": "180x180"
+      "src": "./favicon-180x180-v1.png",
+      "sizes": "180x180",
+      "type": "image/png"
     },
     {
-      "src": "./favicon-192x192-v1.ico",
-      "sizes": "192x192"
+      "src": "./favicon-192x192-v1.png",
+      "sizes": "192x192",
+      "type": "image/png"
     },
     {
-      "src": "./favicon-256x256-v1.ico",
-      "sizes": "256x256"
+      "src": "./favicon-256x256-v1.png",
+      "sizes": "256x256",
+      "type": "image/png"
     }
   ],
   "start_url": "./index.html",
