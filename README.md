@@ -2,4 +2,6 @@
 
 Play tic-tac-toe with Star Wars theme
 
+https://luanorlandi.github.io/tic-tac-porg
+
 ![Screenshot](./public/preview-v1.png)
