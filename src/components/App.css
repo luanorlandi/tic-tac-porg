@@ -52,11 +52,13 @@ footer {
 }
 
 .author {
-  margin-left: 0.4vh;
-  text-decoration: none;
-  color: #fff391;
+  margin-left: 0.5vh;
+}
+
+.author:visited {
+  color: #fbe000;
 }
 
 .author:hover {
-  color: #ffffff;
+  color: #fff384;
 }
