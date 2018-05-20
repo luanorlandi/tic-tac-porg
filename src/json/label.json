@@ -1,14 +1,18 @@
 {
-  "appName": "Tic-Tac-Porg",
-  "author": "Created by Luan Orlandi",
-  "statusWinner": "Winner",
+  "appName": "Tic Tac\nPorg",
   "statusNext": "Next",
+  "statusWinner": "Winner",
   "statusDraw": "Draw",
   "sort": "Sort descending",
   "start": "Start",
   "move": "Move",
   "playerOne": "X",
   "playerTwo": "O",
-  "github": "Star",
-  "twitter": "Tweet"
+  "footer": {
+    "createdBy": "Created by",
+    "author": "Luan Orlandi",
+    "github": "Star",
+    "twitter": "Tweet",
+    "facebook": "Share"
+  }
 }

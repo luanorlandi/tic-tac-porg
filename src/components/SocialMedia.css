@@ -2,3 +2,7 @@ footer .links {
   display: flex;
   justify-content: center;
 }
+
+footer .media {
+  margin: 0 4px;
+}

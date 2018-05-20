@@ -25,7 +25,10 @@ header {
 }
 
 h1 {
-  font-size: 4vh;
+  white-space: pre-line;
+  font-size: 3.2vh;
+  line-height: 3.2vh;
+  text-align: center;
 }
 
 main {
@@ -44,7 +47,17 @@ footer {
   flex-grow: 1;
 }
 
-footer .copyright {
+.copyright {
   display: flex;
   justify-content: center;
+}
+
+.author {
+  margin-left: 0.4vh;
+  text-decoration: none;
+  color: #fff391;
+}
+
+.author:hover {
+  color: #ffffff;
 }
