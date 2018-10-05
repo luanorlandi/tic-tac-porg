@@ -1,4 +1,4 @@
-# Privacy Police
+# Privacy Policy
 
 I use Google Analytics as a third party tracking service, but I don’t use it to track you individually or collect your User Personal Information. I use Google Analytics to collect information about how my website performs and how my users, in general, navigate through and use Tic-Tac-Porg. This helps me evaluate my users' use of Tic-Tac-Porg; compile statistical reports on activity; and improve my content and website performance.
 
